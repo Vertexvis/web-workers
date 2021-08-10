@@ -1,16 +1,15 @@
-jest.mock('threads/worker');
-
-import { expose } from 'threads/worker';
 import { defineWorker } from '../worker';
 import '../__mocks__/browser';
 
 describe(defineWorker, () => {
+  const expose = jest.fn();
+
   beforeEach(() => {
     jest.resetAllMocks();
   });
 
   it('makes worker function result transferable', async () => {
-    defineWorker(() => Uint8Array.of(1));
+    defineWorker(() => Uint8Array.of(1), { expose });
 
     const workerFn = (expose as jest.Mock).mock.calls[0][0];
     const result = await workerFn();
@@ -18,7 +17,7 @@ describe(defineWorker, () => {
   });
 
   it('makes worker module function results transferable', async () => {
-    defineWorker({ a: () => Uint8Array.of(1) });
+    defineWorker({ a: () => Uint8Array.of(1) }, { expose });
 
     const module = (expose as jest.Mock).mock.calls[0][0];
     const result = await module.a();

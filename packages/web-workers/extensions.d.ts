@@ -64,12 +64,6 @@ declare module 'worker:*' {
      * it.
      */
     queue<Return>(task: (thread: ThreadType) => Return): QueuedTask<Return>;
-    /**
-     * Terminate all pool threads.
-     *
-     * @param force Set to `true` to kill the thread even if it cannot be stopped gracefully.
-     */
-    terminate(force?: boolean): Promise<void>;
   }
 
   interface QueuedTask<Return> {
