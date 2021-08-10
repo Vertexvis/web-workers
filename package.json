@@ -1,0 +1,34 @@
+{
+  "name": "root",
+  "private": true,
+  "nextVersionBump": "minor",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "build": "lerna run build",
+    "clean": "lerna clean && rm -r node_modules/",
+    "generate:vscode-workspace": "./scripts/generate_vscode_workspace.sh",
+    "format": "lerna run format",
+    "lerna": "lerna",
+    "lint": "lerna run lint",
+    "postinstall": "yarn generate:vscode-workspace && yarn bootstrap",
+    "test": "lerna run test",
+    "test:coverage": "lerna run test:coverage"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.24",
+    "@vertexvis/build-tools": "^0.8.4",
+    "@vertexvis/eslint-config-vertexvis-typescript": "^0.4.0",
+    "@vertexvis/jest-config-vertexvis": "^0.5.2",
+    "@vertexvis/typescript-config-vertexvis": "^1.1.0",
+    "eslint": "^7.32.0",
+    "jest": "^27.0.6",
+    "lerna": "^4.0.0",
+    "rollup": "^1",
+    "rollup-plugin-typescript2": "^0.30.0",
+    "ts-jest": "^27.0.4",
+    "typescript": "^4.3.5"
+  }
+}
