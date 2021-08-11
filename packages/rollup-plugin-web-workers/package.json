@@ -1,6 +1,6 @@
 {
   "name": "@vertexvis/rollup-plugin-web-workers",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "license": "MIT",
   "description": "A Rollup plugin to bundle web workers from @vertexvis/web-workers.",
   "keywords": [
@@ -51,7 +51,7 @@
   },
   "devDependencies": {
     "@types/expect-puppeteer": "^4.4.6",
-    "@vertexvis/web-workers": "^0.0.0",
+    "@vertexvis/web-workers": "0.1.0",
     "get-port": "^5.1.1",
     "http-server": "^13.0.0",
     "jest-puppeteer": "^5.0.4",
