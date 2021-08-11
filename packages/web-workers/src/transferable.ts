@@ -1,3 +1,4 @@
+import globalThis from './globalThis';
 import { Transfer } from 'threads';
 
 type TypedArray =
@@ -13,28 +14,34 @@ type TypedArray =
   | BigInt64Array
   | BigUint64Array;
 
+function instanceOf(obj: unknown, className: string): boolean {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const Type = globalThis[className];
+  return Type != null && obj instanceof Type;
+}
+
 function isTransferable(obj: unknown): obj is Transferable {
   return (
-    obj instanceof ArrayBuffer ||
-    obj instanceof MessagePort ||
-    obj instanceof ImageBitmap ||
-    obj instanceof OffscreenCanvas
+    instanceOf(obj, 'ArrayBuffer') ||
+    instanceOf(obj, 'MessagePort') ||
+    instanceOf(obj, 'ImageBitmap') ||
+    instanceOf(obj, 'OffscreenCanvas')
   );
 }
 
 function isTypedArray(obj: unknown): obj is TypedArray {
   return (
-    obj instanceof Int8Array ||
-    obj instanceof Uint8Array ||
-    obj instanceof Uint8ClampedArray ||
-    obj instanceof Int16Array ||
-    obj instanceof Uint16Array ||
-    obj instanceof Int32Array ||
-    obj instanceof Uint32Array ||
-    obj instanceof Float32Array ||
-    obj instanceof Float64Array ||
-    obj instanceof BigInt64Array ||
-    obj instanceof BigUint64Array
+    instanceOf(obj, 'Int8Array') ||
+    instanceOf(obj, 'Uint8Array') ||
+    instanceOf(obj, 'Uint8ClampedArray') ||
+    instanceOf(obj, 'Int16Array') ||
+    instanceOf(obj, 'Uint16Array') ||
+    instanceOf(obj, 'Int32Array') ||
+    instanceOf(obj, 'Uint32Array') ||
+    instanceOf(obj, 'Float32Array') ||
+    instanceOf(obj, 'Float64Array') ||
+    instanceOf(obj, 'BigInt64Array') ||
+    instanceOf(obj, 'BigUint64Array')
   );
 }
 

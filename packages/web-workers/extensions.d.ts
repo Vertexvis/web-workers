@@ -122,7 +122,7 @@ declare module 'worker:*' {
      * @param terminate A controller to terminate the worker.
      * @see {@link WorkerModule.spawnPool} to spawn pool of workers.
      */
-    spawnWorker(terminate: TerminateController): Promise<T>;
+    spawnWorker(terminate?: TerminateController): Promise<T>;
   }
 
   /**
