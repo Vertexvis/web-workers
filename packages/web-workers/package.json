@@ -1,0 +1,52 @@
+{
+  "name": "@vertexvis/web-workers",
+  "version": "0.0.0",
+  "license": "MIT",
+  "description": "A wrapper around ThreadsJS to make bundling and using web workers even simpler.",
+  "keywords": [
+    "thread",
+    "worker",
+    "pool",
+    "web worker"
+  ],
+  "author": "Vertex Developers <support@vertexvis.com> (https://developer.vertexvis.com)",
+  "homepage": "https://github.com/Vertexvis/vertex-web-sdk#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vertexvis/vertex-web-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Vertexvis/vertex-web-sdk/issues"
+  },
+  "main": "./dist/bundle.cjs.js",
+  "module": "./dist/bundle.esm.js",
+  "typings": "./dist/index.d.ts",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
+  },
+  "sideEffects": false,
+  "files": [
+    "dist/*",
+    "!dist/**/__tests__"
+  ],
+  "scripts": {
+    "clean": "rm -fr ./dist && mkdir ./dist",
+    "prebuild": "yarn clean",
+    "build": "rollup --config ./rollup.config.js && cp ./extensions.d.ts ./dist",
+    "format": "yarn lint --fix",
+    "lint": "eslint --ext .ts,.tsx,.js,.jsx --ignore-path ../../.gitignore .",
+    "start": "jest --watch",
+    "test": "jest",
+    "test:coverage": "yarn test --coverage"
+  },
+  "devDependencies": {
+    "jest": "^27.0.6",
+    "threads": "^1.6.5",
+    "tslib": "^2.3.0"
+  },
+  "peerDependencies": {
+    "threads": "^1",
+    "tslib": "^2"
+  }
+}
