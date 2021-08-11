@@ -91,7 +91,7 @@ version should be a `major`, `minor` or `patch` release.
 Run `yarn release:ask` to specify a custom release version.
 
 These script will verify that your working directory is clean, is up-to-date
-with master, ask for the release version, generate documentation, and push a
+with main, ask for the release version, generate documentation, and push a
 release branch to GitHub.
 
 You can then create a PR from the release branch. Once your PR has been approved
