@@ -14,8 +14,11 @@
     "lerna": "lerna",
     "lint": "lerna run lint",
     "postinstall": "yarn generate:vscode-workspace && yarn bootstrap",
+    "release": "./scripts/release.sh",
+    "release:ask": "ASK_VERSION=true ./scripts/release.sh",
     "test": "lerna run test",
-    "test:coverage": "lerna run test:coverage"
+    "test:coverage": "lerna run test:coverage",
+    "version:bump": "./scripts/version_bump.sh"
   },
   "devDependencies": {
     "@types/jest": "^26.0.24",
