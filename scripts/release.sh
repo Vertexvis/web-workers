@@ -39,7 +39,6 @@ else
 fi
 
 yarn install
-yarn generate:docs
 
 # Set the next version bump back to patch
 json=`jq '.nextVersionBump = "patch"' package.json`
