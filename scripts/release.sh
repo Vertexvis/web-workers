@@ -4,9 +4,9 @@ set -e
 
 . "$(pwd)"/scripts/utils.sh
 
-if test "$(git rev-parse --abbrev-ref HEAD)" != "master"
+if test "$(git rev-parse --abbrev-ref HEAD)" != "main"
 then
-  echo "Cannot release from non-master branch"
+  echo "Cannot release from non-main branch"
   exit 1
 fi
 
@@ -51,7 +51,7 @@ remote_branch="release/$version"
 # Push branch to upstream
 git commit -a -m "Release $version"
 git push origin $local_branch:$remote_branch
-git checkout master
+git checkout main
 
 # Cleanup
 git branch -D $local_branch
