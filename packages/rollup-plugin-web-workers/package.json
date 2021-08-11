@@ -1,6 +1,6 @@
 {
   "name": "@vertexvis/rollup-plugin-web-workers",
-  "version": "0.0.0-4",
+  "version": "0.0.0",
   "license": "MIT",
   "description": "A Rollup plugin to bundle web workers from @vertexvis/web-workers.",
   "keywords": [

@@ -1,6 +1,6 @@
 {
   "name": "@vertexvis/web-workers",
-  "version": "0.0.0-0",
+  "version": "0.0.0",
   "license": "MIT",
   "description": "A wrapper around ThreadsJS to make bundling and using web workers even simpler.",
   "keywords": [
