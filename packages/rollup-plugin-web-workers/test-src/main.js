@@ -8,7 +8,7 @@ async function testThread() {
   const result = await sum(1, 2);
   await controller.terminate();
 
-  assert(3, result, 'testThread');
+  assert(3, result, 'testThread returns sum');
 }
 
 async function testTransferables() {
@@ -20,7 +20,8 @@ async function testTransferables() {
   const result = await sum({ nums });
   await controller.terminate();
 
-  assert(6, result[0], 'testTransferables');
+  assert(6, result[0], 'testTransferables returns sum');
+  assert(0, nums.length, 'testTransferables transfers array buffer');
 }
 
 async function testPool() {
@@ -32,7 +33,7 @@ async function testPool() {
   const result = await pool.queue((sum) => sum({ nums }));
   await controller.terminate();
 
-  assert(9, result[0], 'testThread');
+  assert(9, result[0], 'testThread returns sum');
 }
 
 async function assert(expected, actual, msg) {
