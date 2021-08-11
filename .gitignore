@@ -109,3 +109,6 @@ dist
 
 # Mac files
 .DS_STORE
+
+# Test builds
+dist-test/
