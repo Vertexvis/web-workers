@@ -40,7 +40,7 @@
     "start": "jest --watch",
     "test:clean": "rm -fr ./dist-test && mkdir ./dist-test",
     "pretest:build": "yarn test:clean",
-    "test:build": "rollup --config ./rollup.testing.js",
+    "test:build": "yarn build && rollup --config ./rollup.testing.js",
     "pretest": "yarn test:build",
     "test": "jest --runInBand",
     "test:coverage": "yarn test"

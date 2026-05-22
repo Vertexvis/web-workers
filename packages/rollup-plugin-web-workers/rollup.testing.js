@@ -2,7 +2,7 @@ import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import copy from 'rollup-plugin-copy';
 import { terser } from 'rollup-plugin-terser';
-import workers from './dist/bundle.esm';
+import workers from './dist/bundle.esm.js';
 
 export default {
   input: './test-src/main.js',
