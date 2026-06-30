@@ -3,9 +3,6 @@ import { Pool, Thread } from 'threads';
 type WorkerPoolLike = Pick<ReturnType<typeof Pool>, 'terminate'>;
 
 export class TerminateController {
-  private threads: Thread[] = [];
-  private pools: WorkerPoolLike[] = [];
-
   public addThread(thread: Thread): void {
     this.threads.push(thread);
   }
@@ -20,4 +17,7 @@ export class TerminateController {
       ...this.pools.map((p) => p.terminate(force)),
     ]);
   }
+
+  private threads: Thread[] = [];
+  private pools: WorkerPoolLike[] = [];
 }
