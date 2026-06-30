@@ -58,6 +58,6 @@
     "http-server": "^13.0.0",
     "jest-puppeteer": "^5.0.4",
     "puppeteer": "^10.2.0",
-    "rollup-plugin-copy": "^3.4.0"
+    "rollup-plugin-copy": "^3.5.0"
   }
 }
