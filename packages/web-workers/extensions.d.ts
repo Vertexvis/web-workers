@@ -47,7 +47,7 @@ declare module 'worker:*' {
      * @param allowResolvingImmediately Set to `true` to resolve immediately if
      * task queue is currently empty.
      */
-    completed(allowResolvingImmediately?: boolean): Promise<any>;
+    completed(allowResolvingImmediately?: boolean): Promise<unknown>;
     /**
      * Returns a promise that resolves once the task queue is emptied. Failing
      * tasks will not cause the promise to be rejected.
@@ -129,6 +129,5 @@ declare module 'worker:*' {
    * Loads the worker bundle and returns a `WorkerModule` that contains methods
    * for spawning a web worker or creating worker pools.
    */
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  export function loadWorker<T = any>(): Promise<WorkerModule<T>>;
+  export function loadWorker<T = unknown>(): Promise<WorkerModule<T>>;
 }

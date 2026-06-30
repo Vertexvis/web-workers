@@ -1,6 +1,8 @@
-import { Pool, Thread } from 'threads';
+import { Thread } from 'threads';
 
-type WorkerPoolLike = Pick<ReturnType<typeof Pool>, 'terminate'>;
+interface WorkerPoolLike {
+  terminate(force?: boolean): Promise<void>;
+}
 
 export class TerminateController {
   private threads: Thread[] = [];

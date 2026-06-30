@@ -1,5 +1,5 @@
 import * as path from 'path';
-import { OutputChunk, Plugin, rollup } from 'rollup';
+import { Plugin, rollup } from 'rollup';
 
 interface ThreadsPluginOptions {
   plugins?: Plugin[];
@@ -123,7 +123,10 @@ function escapeCode(workerCode: string): string {
     .replace(/\$\{/g, '\\$&');
 }
 
-function buildWorker(input: string, plugins: Plugin[]): Promise<OutputChunk> {
+function buildWorker(
+  input: string,
+  plugins: Plugin[]
+): Promise<{ code: string }> {
   return rollup({ input, plugins })
     .then((build) => build.generate({ format: 'iife' }))
     .then((bundle) => {

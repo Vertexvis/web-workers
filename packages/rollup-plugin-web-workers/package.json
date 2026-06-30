@@ -40,22 +40,24 @@
     "start": "jest --watch",
     "test:clean": "rm -fr ./dist-test && mkdir ./dist-test",
     "pretest:build": "yarn test:clean",
-    "test:build": "rollup --config ./rollup.testing.js",
+    "test:build": "yarn workspace @vertexvis/web-workers build && yarn build && rollup --config ./rollup.testing.js",
     "pretest": "yarn test:build",
     "test": "jest --runInBand",
     "test:coverage": "yarn test"
   },
   "peerDependencies": {
-    "rollup": "^1",
+    "rollup": ">=2",
     "threads": "^1"
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^21.1.0",
+    "@rollup/plugin-node-resolve": "^13.3.0",
     "@types/expect-puppeteer": "^4.4.6",
     "@vertexvis/web-workers": "0.1.0",
     "get-port": "^5.1.1",
     "http-server": "^13.0.0",
     "jest-puppeteer": "^5.0.4",
     "puppeteer": "^10.2.0",
-    "rollup-plugin-copy": "^3.4.0"
+    "rollup-plugin-copy": "^3.5.0"
   }
 }

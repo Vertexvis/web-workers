@@ -1,10 +1,10 @@
 import { expose as threadsExpose } from 'threads';
 import { WorkerFunction, WorkerModule } from 'threads/dist/types/worker';
+
 import { makeTransferable } from './transferable';
 
 interface DefineWorkerOptions {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  expose?: (f: WorkerFunction | WorkerModule<any>) => void;
+  expose?: (f: WorkerFunction | WorkerModule<string>) => void;
 }
 
 /**
@@ -14,9 +14,8 @@ interface DefineWorkerOptions {
  * @param impl The worker implementation.
  * @see https://developer.mozilla.org/en-US/docs/Web/API/Transferable
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function defineWorker(
-  impl: WorkerFunction | WorkerModule<any>,
+  impl: WorkerFunction | WorkerModule<string>,
   { expose = threadsExpose }: DefineWorkerOptions = {}
 ): void {
   function wrap(f: WorkerFunction): WorkerFunction {
@@ -32,8 +31,7 @@ export function defineWorker(
     const mod = Object.entries(impl).reduce((mod, [key, fn]) => {
       mod[key] = wrap(fn);
       return mod;
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    }, {} as WorkerModule<any>);
+    }, {} as WorkerModule<string>);
     return expose(mod);
   }
 }

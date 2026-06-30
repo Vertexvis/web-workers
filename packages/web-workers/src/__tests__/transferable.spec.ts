@@ -1,9 +1,15 @@
-import { TransferDescriptor } from 'threads';
-import { makeTransferable } from '../transferable';
 import '../__mocks__/browser';
 
+import { TransferDescriptor } from 'threads';
+
+import { makeTransferable } from '../transferable';
+
 function isTransferDescriptor(obj: unknown): obj is TransferDescriptor {
-  return obj != null && Array.isArray((obj as any).transferables);
+  return (
+    obj != null &&
+    typeof obj === 'object' &&
+    Array.isArray((obj as { transferables?: unknown }).transferables)
+  );
 }
 
 describe(makeTransferable, () => {
