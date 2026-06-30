@@ -1,5 +1,6 @@
-import globalThis from './globalThis';
 import { Transfer } from 'threads';
+
+import globalThis from './globalThis';
 
 type TypedArray =
   | Int8Array

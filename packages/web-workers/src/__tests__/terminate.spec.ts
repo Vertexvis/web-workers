@@ -1,6 +1,7 @@
 jest.mock('threads');
 
 import { Thread } from 'threads';
+
 import { TerminateController } from '../terminate';
 
 describe(TerminateController, () => {

@@ -1,5 +1,6 @@
-import { defineWorker } from '../worker';
 import '../__mocks__/browser';
+
+import { defineWorker } from '../worker';
 
 describe(defineWorker, () => {
   const expose = jest.fn();

@@ -1,8 +1,10 @@
-import { nodeResolve } from '@rollup/plugin-node-resolve';
+import path from 'node:path';
+
 import commonjs from '@rollup/plugin-commonjs';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
 import copy from 'rollup-plugin-copy';
 import { terser } from 'rollup-plugin-terser';
-import path from 'path';
+
 import workers from './dist/bundle.esm.js';
 
 function threadsBrowserEntry() {

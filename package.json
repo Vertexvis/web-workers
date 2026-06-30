@@ -21,10 +21,10 @@
   },
   "devDependencies": {
     "@types/jest": "^29.0.0",
-    "@typescript-eslint/eslint-plugin": "^5.62.0",
-    "@typescript-eslint/parser": "^5.62.0",
+    "@typescript-eslint/eslint-plugin": "^8.62.0",
+    "@typescript-eslint/parser": "^8.62.0",
     "@vertexvis/build-tools": "^0.10.2",
-    "@vertexvis/eslint-config-vertexvis-typescript": "^0.4.0",
+    "@vertexvis/eslint-config-vertexvis-typescript": "^0.5.2",
     "@vertexvis/jest-config-vertexvis": "^0.5.5",
     "@vertexvis/typescript-config-vertexvis": "^1.1.0",
     "eslint": "^8.57.0",

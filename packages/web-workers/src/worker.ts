@@ -1,5 +1,6 @@
 import { expose as threadsExpose } from 'threads';
 import { WorkerFunction, WorkerModule } from 'threads/dist/types/worker';
+
 import { makeTransferable } from './transferable';
 
 interface DefineWorkerOptions {
