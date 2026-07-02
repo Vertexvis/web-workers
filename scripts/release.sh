@@ -27,7 +27,7 @@ fi
 # Create temp branch to run release scripts
 timestamp=$(date "+%s")
 local_branch=release-temp/$timestamp
-git checkout -tb $local_branch
+git checkout -b "$local_branch"
 
 # Bump version and generate docs with updated versions
 if test -n "$ASK_VERSION"
@@ -49,10 +49,10 @@ remote_branch="release/$version"
 
 # Push branch to upstream
 git commit -a -m "Release $version"
-git push origin $local_branch:$remote_branch
+git push origin "$local_branch:$remote_branch"
 git checkout main
 
 # Cleanup
-git branch -D $local_branch
+git branch -D "$local_branch"
 
 echo "Pushed $remote_branch. Open a PR and merge to publish the release."
