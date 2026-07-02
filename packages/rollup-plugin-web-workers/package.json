@@ -52,12 +52,12 @@
   "devDependencies": {
     "@rollup/plugin-commonjs": "^21.1.0",
     "@rollup/plugin-node-resolve": "^13.3.0",
-    "@types/expect-puppeteer": "^4.4.6",
+    "@types/expect-puppeteer": "^4.4.7",
     "@vertexvis/web-workers": "0.1.0",
     "get-port": "^5.1.1",
-    "http-server": "^13.0.0",
+    "http-server": "^13.1.0",
     "jest-puppeteer": "^5.0.4",
-    "puppeteer": "^10.2.0",
+    "puppeteer": "^10.4.0",
     "rollup-plugin-copy": "^3.5.0"
   }
 }
