@@ -1,7 +1,7 @@
-const getPort = require('get-port');
-const { setup: setupPuppeteer } = require('jest-environment-puppeteer');
+import getPort from 'get-port';
+import puppeteerEnvironment from 'jest-environment-puppeteer';
 
-module.exports = async function globalSetup(globalConfig) {
+export default async function globalSetup(globalConfig) {
   process.env.__PORT__ = await getPort();
-  await setupPuppeteer(globalConfig);
+  await puppeteerEnvironment.setup(globalConfig);
 };

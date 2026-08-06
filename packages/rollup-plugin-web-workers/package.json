@@ -1,6 +1,7 @@
 {
   "name": "@vertexvis/rollup-plugin-web-workers",
   "version": "0.2.0",
+  "type": "module",
   "license": "MIT",
   "description": "A Rollup plugin to bundle web workers from @vertexvis/web-workers.",
   "keywords": [
@@ -19,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/Vertexvis/vertex-web-sdk/issues"
   },
-  "main": "./dist/bundle.cjs.js",
+  "main": "./dist/bundle.cjs",
   "module": "./dist/bundle.esm.js",
   "typings": "./dist/index.d.ts",
   "publishConfig": {
@@ -36,13 +37,13 @@
     "prebuild": "yarn clean",
     "build": "rollup --config ./rollup.config.js",
     "format": "yarn lint --fix",
-    "lint": "eslint --ext .ts,.tsx,.js,.jsx --ignore-path ../../.gitignore .",
+    "lint": "eslint .",
     "start": "jest --watch",
     "test:clean": "rm -fr ./dist-test && mkdir ./dist-test",
     "pretest:build": "yarn test:clean",
     "test:build": "yarn workspace @vertexvis/web-workers build && yarn build && rollup --config ./rollup.testing.js",
     "pretest": "yarn test:build",
-    "test": "jest --runInBand",
+    "test": "JEST_PUPPETEER_CONFIG=./jest-puppeteer.config.cjs jest --runInBand",
     "test:coverage": "yarn test"
   },
   "peerDependencies": {
