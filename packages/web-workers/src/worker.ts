@@ -1,10 +1,13 @@
 import { expose as threadsExpose } from 'threads';
-import { WorkerFunction, WorkerModule } from 'threads/dist/types/worker';
 
 import { makeTransferable } from './transferable';
 
+type Exposed = Parameters<typeof threadsExpose>[0];
+type WorkerFunction = Extract<Exposed, (...args: any[]) => any>;
+type WorkerModule = Exclude<Exposed, WorkerFunction>;
+
 interface DefineWorkerOptions {
-  expose?: (f: WorkerFunction | WorkerModule<string>) => void;
+  expose?: typeof threadsExpose;
 }
 
 /**
@@ -15,7 +18,7 @@ interface DefineWorkerOptions {
  * @see https://developer.mozilla.org/en-US/docs/Web/API/Transferable
  */
 export function defineWorker(
-  impl: WorkerFunction | WorkerModule<string>,
+  impl: Exposed,
   { expose = threadsExpose }: DefineWorkerOptions = {}
 ): void {
   function wrap(f: WorkerFunction): WorkerFunction {
@@ -31,7 +34,7 @@ export function defineWorker(
     const mod = Object.entries(impl).reduce((mod, [key, fn]) => {
       mod[key] = wrap(fn);
       return mod;
-    }, {} as WorkerModule<string>);
+    }, {} as WorkerModule);
     return expose(mod);
   }
 }
