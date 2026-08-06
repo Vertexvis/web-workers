@@ -21,18 +21,18 @@
   },
   "devDependencies": {
     "@types/jest": "^29.0.0",
-    "@typescript-eslint/eslint-plugin": "^8.62.0",
-    "@typescript-eslint/parser": "^8.62.0",
-    "@vertexvis/build-tools": "^0.10.2",
+    "@typescript-eslint/eslint-plugin": "^8.66.0",
+    "@typescript-eslint/parser": "^8.66.0",
+    "@vertexvis/build-tools": "^0.11.2",
     "@vertexvis/eslint-config-vertexvis-typescript": "^0.5.2",
     "@vertexvis/jest-config-vertexvis": "^0.5.5",
     "@vertexvis/typescript-config-vertexvis": "^1.1.0",
     "eslint": "^8.57.0",
     "jest": "^29.0.0",
     "lerna": "^6.6.0",
-    "rollup": "^2",
+    "rollup": "^4.62.4",
     "rollup-plugin-typescript2": "^0.37.0",
-    "ts-jest": "^29.4.11",
+    "ts-jest": "^29.4.12",
     "typescript": "^5.6.3"
   },
   "engines": {
