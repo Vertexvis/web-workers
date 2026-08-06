@@ -20,7 +20,7 @@ jobs:
       - name: Enable Corepack
         run: corepack enable
       - name: "Install"
-        run: "yarn install"
+        run: "yarn install --frozen-lockfile --ignore-scripts"
       - name: "Build"
         run: "yarn build"
       - name: "Test"
@@ -68,7 +68,7 @@ jobs:
       - name: Enable Corepack
         run: corepack enable
       - name: "Install"
-        run: "yarn install"
+        run: "yarn install --frozen-lockfile --ignore-scripts"
       - name: "Publish Canary to NPM"
         env:
           NODE_AUTH_TOKEN: "${{ secrets.NPMJS_ACCESS_TOKEN }}"
@@ -102,7 +102,7 @@ jobs:
       - name: Enable Corepack
         run: corepack enable
       - name: "Install"
-        run: "yarn install"
+        run: "yarn install --frozen-lockfile --ignore-scripts"
       - name: "Publish Release to NPM"
         env:
           NODE_AUTH_TOKEN: "${{ secrets.NPMJS_ACCESS_TOKEN }}"
