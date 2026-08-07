@@ -11,6 +11,7 @@
     "clean": "yarn workspaces foreach -A run clean || rm -rf node_modules packages/*/node_modules",
     "generate:vscode-workspace": "./scripts/generate_vscode_workspace.sh",
     "format": "lerna run format",
+    "install:chromium": "node ./node_modules/puppeteer/install.js",
     "lerna": "lerna",
     "lint": "lerna run lint",
     "postinstall": "yarn generate:vscode-workspace",
