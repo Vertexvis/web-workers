@@ -3,6 +3,7 @@
   "extends": "@vertexvis/typescript-config-vertexvis/tsconfig",
   "compilerOptions": {
     "downlevelIteration": true,
+    "moduleResolution": "node",
   },
   "include": ["src"],
   "exclude": ["dist", "node_modules"],

@@ -20,7 +20,7 @@ jobs:
       - name: Enable Corepack
         run: corepack enable
       - name: "Install"
-        run: "yarn install"
+        run: "yarn install --frozen-lockfile --ignore-scripts"
       - name: "Build"
         run: "yarn build"
       - name: "Upload build artifacts"
@@ -43,7 +43,7 @@ jobs:
       - name: Enable Corepack
         run: corepack enable
       - name: "Install"
-        run: "yarn install"
+        run: "yarn install --frozen-lockfile --ignore-scripts"
       - name: "Lint"
         run: "yarn lint"
   test:
@@ -66,6 +66,8 @@ jobs:
       - name: Enable Corepack
         run: corepack enable
       - name: "Install"
-        run: "yarn install"
+        run: "yarn install --frozen-lockfile --ignore-scripts"
+      - name: "Download Chromium"
+        run: "yarn install:chromium"
       - name: "Test"
         run: "yarn test:coverage"

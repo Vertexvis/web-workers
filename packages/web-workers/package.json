@@ -1,6 +1,7 @@
 {
   "name": "@vertexvis/web-workers",
   "version": "0.2.0",
+  "type": "module",
   "license": "MIT",
   "description": "A wrapper around ThreadsJS to make bundling and using web workers even simpler.",
   "keywords": [
@@ -18,7 +19,7 @@
   "bugs": {
     "url": "https://github.com/Vertexvis/vertex-web-sdk/issues"
   },
-  "main": "./dist/bundle.cjs.js",
+  "main": "./dist/bundle.cjs",
   "module": "./dist/bundle.esm.js",
   "typings": "./dist/index.d.ts",
   "publishConfig": {
@@ -35,7 +36,7 @@
     "prebuild": "yarn clean",
     "build": "rollup --config ./rollup.config.js && cp ./extensions.d.ts ./dist",
     "format": "yarn lint --fix",
-    "lint": "eslint --ext .ts,.tsx,.js,.jsx --ignore-path ../../.gitignore .",
+    "lint": "eslint .",
     "start": "jest --watch",
     "test": "jest",
     "test:coverage": "yarn test --coverage"

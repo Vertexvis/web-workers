@@ -52,9 +52,9 @@ main();
 ### Rollup Config
 
 ```js
-import resolve from '@rollup/plugin-node-resolve';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
 import typescript2 from 'rollup-plugin-typescript2';
-import { terser } from 'rollup-plugin-terser';
+import terser from '@rollup/plugin-terser';
 import workers from '@vertexvis/rollup-plugin-web-workers';
 
 export default {
@@ -64,11 +64,11 @@ export default {
     format: 'esm',
   },
   plugins: [
-    resolve(),
+    nodeResolve(),
     workers({
       // Workers are bundled separately. Pass a list of plugins to use when
       // bundling the worker.
-      plugins: [resolve(), typescript(), terser()]
+      plugins: [nodeResolve(), typescript2(), terser()]
     }),
     typescript2(),
   ]
