@@ -1,14 +1,14 @@
 import * as path from 'path';
 import { Plugin, rollup } from 'rollup';
 
-interface ThreadsPluginOptions {
+interface WorkerPluginOptions {
   plugins?: Plugin[];
 }
 
 const workerPrefix = 'worker:';
 const workerModulePrefix = 'worker-module:';
 
-export default function ({ plugins = [] }: ThreadsPluginOptions): Plugin {
+export default function ({ plugins = [] }: WorkerPluginOptions): Plugin {
   return {
     name: 'web-workers-plugin',
 

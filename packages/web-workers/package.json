@@ -22,6 +22,17 @@
   "main": "./dist/bundle.cjs",
   "module": "./dist/bundle.esm.js",
   "typings": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/bundle.esm.js",
+      "require": "./dist/bundle.cjs",
+      "default": "./dist/bundle.esm.js"
+    }
+  },
+  "engines": {
+    "node": ">=20"
+  },
   "publishConfig": {
     "registry": "https://registry.npmjs.org",
     "access": "public"

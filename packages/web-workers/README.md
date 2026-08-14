@@ -18,6 +18,13 @@ yarn add @vertexvis/web-workers
 npm install @vertexvis/web-workers
 ```
 
+### Migrating from `threads.js`
+
+This major release replaces the `threads` peer dependency with `threadsx` v2.
+Remove `threads` and install `threadsx@^2`, then update direct imports such as
+`threads/worker` to `threadsx/worker`. The APIs provided by this package are
+otherwise unchanged.
+
 ## Usage
 
 ### Defining a Web Worker

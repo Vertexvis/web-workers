@@ -11,6 +11,25 @@ of web workers and provide pooling behavior.
 | [@vertexvis/web-workers]      | ![npm](https://img.shields.io/npm/v/@vertexvis/web-workers)  | Package for defining and loading web workers. |
 | [@vertexvis/rollup-plugin-web-workers]  | ![npm](https://img.shields.io/npm/v/@vertexvis/rollup-plugin-web-workers)   | Package for building web workers with Rollup. |
 
+## Migrating from `threads.js`
+
+This major release replaces the unmaintained `threads` peer dependency with
+`threadsx` v2. Install `threadsx` alongside these packages and remove `threads`:
+
+```sh
+yarn remove threads
+yarn add threadsx@^2
+
+# or
+npm uninstall threads
+npm install threadsx@^2
+```
+
+Update any direct imports from `threads` to `threadsx`, including worker entry
+imports such as `threads/worker` to `threadsx/worker`. The APIs used by these
+packages, including `defineWorker`, `loadWorker`, and worker pools, are
+otherwise unchanged.
+
 ## Simple Usage
 
 See [@vertexvis/web-workers](./packages/web-workers/README.md) for more advanced
