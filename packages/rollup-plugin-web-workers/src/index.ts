@@ -86,7 +86,7 @@ export async function loadWorker() {
 
 function getWorkerModule(workerName: string, workerCode: string): string {
   return `
-import { BlobWorker, spawn, Pool, Transfer } from 'threads';
+import { BlobWorker, spawn, Pool, Transfer } from 'threadsx';
 import { makeTransferable, TerminateController } from '@vertexvis/web-workers';
 
 const workerName = "${workerName}.js";

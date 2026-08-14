@@ -3,7 +3,7 @@
   "version": "0.2.0",
   "type": "module",
   "license": "MIT",
-  "description": "A wrapper around ThreadsJS to make bundling and using web workers even simpler.",
+  "description": "A wrapper around threadsx to make bundling and using web workers even simpler.",
   "keywords": [
     "thread",
     "worker",
@@ -44,11 +44,11 @@
   "devDependencies": {
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
-    "threads": "^1.7.0",
+    "threadsx": "^2.1.0",
     "tslib": "^2.8.1"
   },
   "peerDependencies": {
-    "threads": "^1",
+    "threadsx": "^2",
     "tslib": "^2"
   }
 }

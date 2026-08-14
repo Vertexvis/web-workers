@@ -48,7 +48,7 @@
   },
   "peerDependencies": {
     "rollup": ">=2",
-    "threads": "^1"
+    "threadsx": "^2"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^29.0.3",
@@ -60,6 +60,7 @@
     "http-server": "^13.1.0",
     "jest-puppeteer": "^5.0.4",
     "puppeteer": "^10.4.0",
-    "rollup-plugin-copy": "^3.5.0"
+    "rollup-plugin-copy": "^3.5.0",
+    "threadsx": "^2.1.0"
   }
 }

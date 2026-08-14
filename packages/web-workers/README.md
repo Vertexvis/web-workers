@@ -1,6 +1,6 @@
 # @vertexvis/web-workers
 
-A package for defining, bundling, and loading web workers. The [Threads] package
+A package for defining, bundling, and loading web workers. The [threadsx] package
 is used internally to provide worker creation and pooling behavior.
 [Transferables] are automatically passed when sending data to and from web
 workers.
@@ -166,6 +166,6 @@ export default {
 }
 ```
 
-[Threads]: https://threads.js.org/
+[threadsx]: https://github.com/jmaleonard/threadsx
 [Transferables]: https://developer.mozilla.org/en-US/docs/Web/API/Transferable
 [@vertexvis/rollup-plugin-web-workers]: https://www.npmjs.com/package/@vertexvis/rollup-plugin-web-workers

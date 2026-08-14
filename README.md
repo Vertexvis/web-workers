@@ -1,7 +1,7 @@
 # web-workers
 
 This is a mono-repo that contains utilities to create and build web workers. It
-uses the [Threads](https://threads.js.org/) internally to handle the management
+uses [threadsx](https://github.com/jmaleonard/threadsx) internally to handle the management
 of web workers and provide pooling behavior.
 
 ## Packages
