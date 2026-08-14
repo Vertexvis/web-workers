@@ -110,8 +110,12 @@ export async function spawnWorker(terminate) {
   };
 }
 
-export function spawnPool(options) {
-  return Pool(() => spawnWorker(options.terminate), options);
+export function spawnPool({ terminate, ...options } = {}) {
+  const pool = Pool(() => spawnWorker(), options);
+  if (terminate != null) {
+    terminate.addPool(pool);
+  }
+  return pool;
 }
 `;
 }

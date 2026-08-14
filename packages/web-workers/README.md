@@ -82,7 +82,7 @@ async function main(): Promise<void> {
   const { spawnPool, makeController } = await loadWorker<AddFn>();
 
   const controller = makeController();
-  const pool = await spawnPool({ controller });
+  const pool = await spawnPool({ terminate: controller });
   pool
     .queue((sum) => add(1, 2))
     .then((sum) => console.log('sum', sum)); // 3
@@ -113,13 +113,13 @@ interface CreatePoolOptions {
   size?: number;
 
   // A controller to terminate the pool.
-  controller?: WorkerController;
+  terminate?: TerminateController;
 }
 ```
 
 ### Worker Termination
 
-A `WorkerController` is used to terminate a worker. A worker module exports a
+A `TerminateController` is used to terminate a worker. A worker module exports a
 `makeController` function to create a controller. You can pass a controller to
 multiple workers and pools to terminate them together.
 
@@ -138,7 +138,7 @@ async function main(): Promise<void> {
   const controller = makeController();
 
   const worker = await spawnWorker(controller);
-  const pool = await spawnPool({ controller });
+  const pool = await spawnPool({ terminate: controller });
 
   // Terminate the worker and pool.
   await controller.terminate();
