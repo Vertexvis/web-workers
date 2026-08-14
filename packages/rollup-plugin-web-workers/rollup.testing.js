@@ -7,12 +7,12 @@ import copy from 'rollup-plugin-copy';
 
 import workers from './dist/bundle.esm.js';
 
-function threadsBrowserEntry() {
+function threadsxBrowserEntry() {
   return {
-    name: 'threads-browser-entry',
+    name: 'threadsx-browser-entry',
     resolveId(source) {
-      if (source === 'threads') {
-        return path.resolve('../../node_modules/threads/dist-esm/index.js');
+      if (source === 'threadsx') {
+        return path.resolve('../../node_modules/threadsx/dist-esm/index.js');
       }
 
       return null;
@@ -21,7 +21,7 @@ function threadsBrowserEntry() {
 }
 
 const browserPlugins = [
-  threadsBrowserEntry(),
+  threadsxBrowserEntry(),
   commonjs(),
   nodeResolve({ browser: true }),
 ];

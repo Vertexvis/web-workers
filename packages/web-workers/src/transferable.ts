@@ -1,4 +1,4 @@
-import { Transfer } from 'threads';
+import { Transfer } from 'threadsx';
 
 import globalThis from './globalThis';
 
@@ -47,11 +47,11 @@ function isTypedArray(obj: unknown): obj is TypedArray {
 }
 
 /**
- * A function that will recursively inspect an object and return a Threads
+ * A function that will recursively inspect an object and return a threadsx
  * `Transfer` that contains all the `Transferable`s in the given object.
  *
  * @param obj The object to make transferable.
- * @returns A `Transfer` from Threads.
+ * @returns A `Transfer` from threadsx.
  */
 export function makeTransferable<T>(obj: T): ReturnType<typeof Transfer> | T {
   if (isTransferable(obj)) {

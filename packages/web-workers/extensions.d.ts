@@ -2,7 +2,7 @@
  * Provides static analysis for import paths that are prefixed with `worker:`.
  */
 declare module 'worker:*' {
-  import type { Worker } from 'threads';
+  import type { Worker } from 'threadsx';
 
   interface SpawnPoolOptions {
     /**
