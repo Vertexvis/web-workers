@@ -23,6 +23,17 @@
   "main": "./dist/bundle.cjs",
   "module": "./dist/bundle.esm.js",
   "typings": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/bundle.esm.js",
+      "require": "./dist/bundle.cjs",
+      "default": "./dist/bundle.esm.js"
+    }
+  },
+  "engines": {
+    "node": ">=20"
+  },
   "publishConfig": {
     "registry": "https://registry.npmjs.org",
     "access": "public"
@@ -48,7 +59,7 @@
   },
   "peerDependencies": {
     "rollup": ">=2",
-    "threads": "^1"
+    "threadsx": "^2"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^29.0.3",
@@ -60,6 +71,7 @@
     "http-server": "^13.1.0",
     "jest-puppeteer": "^5.0.4",
     "puppeteer": "^10.4.0",
-    "rollup-plugin-copy": "^3.5.0"
+    "rollup-plugin-copy": "^3.5.0",
+    "threadsx": "^2.1.0"
   }
 }

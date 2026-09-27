@@ -1,4 +1,4 @@
-import { Thread } from 'threads';
+import { Thread } from 'threadsx';
 
 interface WorkerPoolLike {
   terminate(force?: boolean): Promise<void>;

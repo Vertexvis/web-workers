@@ -1,7 +1,7 @@
 # web-workers
 
 This is a mono-repo that contains utilities to create and build web workers. It
-uses the [Threads](https://threads.js.org/) internally to handle the management
+uses [threadsx](https://github.com/jmaleonard/threadsx) internally to handle the management
 of web workers and provide pooling behavior.
 
 ## Packages
@@ -10,6 +10,25 @@ of web workers and provide pooling behavior.
 | ------------ | ------- | ----------- |
 | [@vertexvis/web-workers]      | ![npm](https://img.shields.io/npm/v/@vertexvis/web-workers)  | Package for defining and loading web workers. |
 | [@vertexvis/rollup-plugin-web-workers]  | ![npm](https://img.shields.io/npm/v/@vertexvis/rollup-plugin-web-workers)   | Package for building web workers with Rollup. |
+
+## Migrating from `threads.js`
+
+This major release replaces the unmaintained `threads` peer dependency with
+`threadsx` v2. Install `threadsx` alongside these packages and remove `threads`:
+
+```sh
+yarn remove threads
+yarn add threadsx@^2
+
+# or
+npm uninstall threads
+npm install threadsx@^2
+```
+
+Update any direct imports from `threads` to `threadsx`, including worker entry
+imports such as `threads/worker` to `threadsx/worker`. The APIs used by these
+packages, including `defineWorker`, `loadWorker`, and worker pools, are
+otherwise unchanged.
 
 ## Simple Usage
 

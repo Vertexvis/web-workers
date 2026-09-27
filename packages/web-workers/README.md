@@ -1,6 +1,6 @@
 # @vertexvis/web-workers
 
-A package for defining, bundling, and loading web workers. The [Threads] package
+A package for defining, bundling, and loading web workers. The [threadsx] package
 is used internally to provide worker creation and pooling behavior.
 [Transferables] are automatically passed when sending data to and from web
 workers.
@@ -17,6 +17,13 @@ yarn add @vertexvis/web-workers
 // NPM
 npm install @vertexvis/web-workers
 ```
+
+### Migrating from `threads.js`
+
+This major release replaces the `threads` peer dependency with `threadsx` v2.
+Remove `threads` and install `threadsx@^2`, then update direct imports such as
+`threads/worker` to `threadsx/worker`. The APIs provided by this package are
+otherwise unchanged.
 
 ## Usage
 
@@ -75,7 +82,7 @@ async function main(): Promise<void> {
   const { spawnPool, makeController } = await loadWorker<AddFn>();
 
   const controller = makeController();
-  const pool = await spawnPool({ controller });
+  const pool = await spawnPool({ terminate: controller });
   pool
     .queue((sum) => add(1, 2))
     .then((sum) => console.log('sum', sum)); // 3
@@ -106,13 +113,13 @@ interface CreatePoolOptions {
   size?: number;
 
   // A controller to terminate the pool.
-  controller?: WorkerController;
+  terminate?: TerminateController;
 }
 ```
 
 ### Worker Termination
 
-A `WorkerController` is used to terminate a worker. A worker module exports a
+A `TerminateController` is used to terminate a worker. A worker module exports a
 `makeController` function to create a controller. You can pass a controller to
 multiple workers and pools to terminate them together.
 
@@ -131,7 +138,7 @@ async function main(): Promise<void> {
   const controller = makeController();
 
   const worker = await spawnWorker(controller);
-  const pool = await spawnPool({ controller });
+  const pool = await spawnPool({ terminate: controller });
 
   // Terminate the worker and pool.
   await controller.terminate();
@@ -166,6 +173,6 @@ export default {
 }
 ```
 
-[Threads]: https://threads.js.org/
+[threadsx]: https://github.com/jmaleonard/threadsx
 [Transferables]: https://developer.mozilla.org/en-US/docs/Web/API/Transferable
 [@vertexvis/rollup-plugin-web-workers]: https://www.npmjs.com/package/@vertexvis/rollup-plugin-web-workers

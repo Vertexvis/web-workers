@@ -29,11 +29,20 @@ async function testPool() {
 
   const { spawnPool, makeController } = await loadWorker2();
   const controller = makeController();
-  const pool = await spawnPool({ controller });
+  const pool = await spawnPool({ terminate: controller });
   const result = await pool.queue((sum) => sum({ nums }));
   await controller.terminate();
 
   assert(9, result[0], 'testThread returns sum');
+}
+
+async function testPoolWithoutOptions() {
+  const { spawnPool } = await loadWorker2();
+  const pool = await spawnPool();
+  const result = await pool.queue((sum) => sum({ nums: Uint8Array.of(2, 3) }));
+  await pool.terminate();
+
+  assert(5, result[0], 'testPoolWithoutOptions returns sum');
 }
 
 async function assert(expected, actual, msg) {
@@ -60,6 +69,7 @@ export async function runSuite() {
   await testThread();
   await testTransferables();
   await testPool();
+  await testPoolWithoutOptions();
 
   window.__test__.done = true;
 }

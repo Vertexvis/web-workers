@@ -1,4 +1,4 @@
-import { expose as threadsExpose } from 'threads';
+import { expose as threadsExpose } from 'threadsx';
 
 import { makeTransferable } from './transferable';
 
@@ -12,7 +12,7 @@ interface DefineWorkerOptions {
 
 /**
  * Defines a web worker implementation. This function wraps the `expose` method
- * of Threads and handles automatic conversion of Transferable types.
+ * of threadsx and handles automatic conversion of Transferable types.
  *
  * @param impl The worker implementation.
  * @see https://developer.mozilla.org/en-US/docs/Web/API/Transferable

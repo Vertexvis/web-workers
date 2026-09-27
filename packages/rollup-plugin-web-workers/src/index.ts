@@ -1,14 +1,14 @@
 import * as path from 'path';
 import { Plugin, rollup } from 'rollup';
 
-interface ThreadsPluginOptions {
+interface WorkerPluginOptions {
   plugins?: Plugin[];
 }
 
 const workerPrefix = 'worker:';
 const workerModulePrefix = 'worker-module:';
 
-export default function ({ plugins = [] }: ThreadsPluginOptions): Plugin {
+export default function ({ plugins = [] }: WorkerPluginOptions): Plugin {
   return {
     name: 'web-workers-plugin',
 
@@ -86,7 +86,7 @@ export async function loadWorker() {
 
 function getWorkerModule(workerName: string, workerCode: string): string {
   return `
-import { BlobWorker, spawn, Pool, Transfer } from 'threads';
+import { BlobWorker, spawn, Pool, Transfer } from 'threadsx';
 import { makeTransferable, TerminateController } from '@vertexvis/web-workers';
 
 const workerName = "${workerName}.js";
@@ -110,8 +110,12 @@ export async function spawnWorker(terminate) {
   };
 }
 
-export function spawnPool(options) {
-  return Pool(() => spawnWorker(options.terminate), options);
+export function spawnPool({ terminate, ...options } = {}) {
+  const pool = Pool(() => spawnWorker(), options);
+  if (terminate != null) {
+    terminate.addPool(pool);
+  }
+  return pool;
 }
 `;
 }
