@@ -3,7 +3,7 @@
   "version": "0.2.0",
   "type": "module",
   "license": "MIT",
-  "description": "A wrapper around threadsx to make bundling and using web workers even simpler.",
+  "description": "Compatibility helpers for threadsx web workers; use threadsx directly for new code.",
   "keywords": [
     "thread",
     "worker",
@@ -39,13 +39,15 @@
   },
   "sideEffects": false,
   "files": [
-    "dist/*",
-    "!dist/**/__tests__"
+    "dist/bundle.*",
+    "dist/*.d.ts",
+    "dist/*.d.ts.map",
+    "MIGRATION.md"
   ],
   "scripts": {
     "clean": "rm -fr ./dist && mkdir ./dist",
     "prebuild": "yarn clean",
-    "build": "rollup --config ./rollup.config.js && cp ./extensions.d.ts ./dist",
+    "build": "rollup --config ./rollup.config.js",
     "format": "yarn lint --fix",
     "lint": "eslint .",
     "start": "jest --watch",

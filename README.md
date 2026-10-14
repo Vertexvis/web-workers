@@ -1,124 +1,47 @@
 # web-workers
 
-This is a mono-repo that contains utilities to create and build web workers. It
-uses [threadsx](https://github.com/jmaleonard/threadsx) internally to handle the management
-of web workers and provide pooling behavior.
+This repository contains `@vertexvis/web-workers`, a small set of compatibility
+helpers for existing [threadsx] worker applications. For new code, use
+`threadsx` directly. The custom `worker:` loader and
+`@vertexvis/rollup-plugin-web-workers` have been retired.
 
-## Packages
+This is a recommendation, not an npm deprecation notice: the remaining
+`@vertexvis/web-workers` exports continue to work in this release.
 
-| Package      | Version | Description |
-| ------------ | ------- | ----------- |
-| [@vertexvis/web-workers]      | ![npm](https://img.shields.io/npm/v/@vertexvis/web-workers)  | Package for defining and loading web workers. |
-| [@vertexvis/rollup-plugin-web-workers]  | ![npm](https://img.shields.io/npm/v/@vertexvis/rollup-plugin-web-workers)   | Package for building web workers with Rollup. |
-
-## Migrating from `threads.js`
-
-This major release replaces the unmaintained `threads` peer dependency with
-`threadsx` v2. Install `threadsx` alongside these packages and remove `threads`:
-
-```sh
-yarn remove threads
-yarn add threadsx@^2
-
-# or
-npm uninstall threads
-npm install threadsx@^2
-```
-
-Update any direct imports from `threads` to `threadsx`, including worker entry
-imports such as `threads/worker` to `threadsx/worker`. The APIs used by these
-packages, including `defineWorker`, `loadWorker`, and worker pools, are
-otherwise unchanged.
-
-## Simple Usage
-
-See [@vertexvis/web-workers](./packages/web-workers/README.md) for more advanced
-usage.
-
-### Worker
+## Use threadsx directly
 
 ```ts
-// ./worker.ts
-import { defineWorker } from '@vertexvis/web-workers';
+// worker.ts
+import { expose } from 'threadsx/worker';
 
 export type AddFn = (a: number, b: number) => Promise<number>;
 
-const add: AddFn = async (a, b) => {
-  return a + b;
-}
-
-defineWorker(add);
+expose(async (a: number, b: number) => a + b);
 ```
-
-### Entry
 
 ```ts
-// ./main.ts
+// main.ts
+import { spawn, Thread, Worker } from 'threadsx';
 import type { AddFn } from './worker';
-import { loadWorker } from 'worker:./worker';
 
-async function main(): Promise<void> {
-  const { spawnWorker } = await loadWorker<AddFn>();
-
-  const add = await spawnWorker();
-  const sum = await add(1, 2)
-  console.log('sum', sum);
-}
-
-main();
+const add = await spawn<AddFn>(
+  new Worker(new URL('./worker', import.meta.url))
+);
+console.log(await add(1, 2));
+await Thread.terminate(add);
 ```
 
-### Rollup Config
+Your bundler must emit the worker as a separate file. See the
+[migration guide](./packages/web-workers/MIGRATION.md) for worker pools,
+transferables, and Rollup configuration. The
+[@vertexvis/web-workers README](./packages/web-workers/README.md) documents the
+remaining helpers for existing users.
 
-```js
-import { nodeResolve } from '@rollup/plugin-node-resolve';
-import typescript2 from 'rollup-plugin-typescript2';
-import terser from '@rollup/plugin-terser';
-import workers from '@vertexvis/rollup-plugin-web-workers';
+## Release
 
-export default {
-  input: 'src/main.ts',
-  output: {
-    dir: './dist',
-    format: 'esm',
-  },
-  plugins: [
-    nodeResolve(),
-    workers({
-      // Workers are bundled separately. Pass a list of plugins to use when
-      // bundling the worker.
-      plugins: [nodeResolve(), typescript2(), terser()]
-    }),
-    typescript2(),
-  ]
-}
-```
+This branch removes the old loader API, so the next release is a breaking
+`0.3.0` minor release. The `nextVersionBump` setting in `package.json` tells
+the release scripts which version to prepare; the release script runs after
+the branch is merged to `main`.
 
-## Bumping Versions
-
-The project's release scripts will automatically bump version based on the
-`nextBumpVersion` that's specified in the projects `package.json` file. When
-making a breaking change, you should run `yarn version:bump` and specify
-`minor`. This should be done as part of your PR.
-
-## Releasing
-
-Run `yarn release` to create a release based on the `nextBumpVersion` that's
-specified in the projects `package.json` file. This field tracks if the next
-version should be a `major`, `minor` or `patch` release.
-
-Run `yarn release:ask` to specify a custom release version.
-
-These script will verify that your working directory is clean, is up-to-date
-with main, ask for the release version, generate documentation, and push a
-release branch to GitHub.
-
-You can then create a PR from the release branch. Once your PR has been approved
-and merged, the CI pipeline will automatically publish packages to NPM, tag the
-release, and create a release in Github.
-
-If the publishing, open a new PR with any fixes and merge your changes. CI will
-attempt to republish the previous release that failed.
-
-[@vertexvis/web-workers]: https://www.npmjs.com/package/@vertexvis/web-workers
-[@vertexvis/rollup-plugin-web-workers]: https://www.npmjs.com/package/@vertexvis/rollup-plugin-web-workers
+[threadsx]: https://github.com/jmaleonard/threadsx
