@@ -1,6 +1,6 @@
-jest.mock('threads');
+jest.mock('threadsx');
 
-import { Thread } from 'threads';
+import { Thread } from 'threadsx';
 
 import { TerminateController } from '../terminate';
 

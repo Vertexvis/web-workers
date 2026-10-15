@@ -1,6 +1,6 @@
 import '../__mocks__/browser';
 
-import { TransferDescriptor } from 'threads';
+import { TransferDescriptor } from 'threadsx';
 
 import { makeTransferable } from '../transferable';
 
