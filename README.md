@@ -1,12 +1,17 @@
 # web-workers
 
-This repository contains `@vertexvis/web-workers`, a small set of compatibility
-helpers for existing [threadsx] worker applications. For new code, use
-`threadsx` directly. The custom `worker:` loader and
+This repository contains `@vertexvis/web-workers`, originally a set of compatibility
+helpers around threads, and now as an even small set around [threadsx] worker applications.
+
+For new code, the recommendation is use `threadsx` directly. The custom `worker:` loader and
 `@vertexvis/rollup-plugin-web-workers` have been retired.
 
-This is a recommendation, not an npm deprecation notice: the remaining
-`@vertexvis/web-workers` exports continue to work in this release.
+This repo will probably not see further updates and the recommendation is to migrate away.
+
+a testing or alpha 0.3.0 release as a migration step is potentially coming. 
+
+This is not yet an npm deprecation notice: the remaining
+`@vertexvis/web-workers` exports should continue to work with next release.
 
 ## Use threadsx directly
 
@@ -40,7 +45,9 @@ remaining helpers for existing users.
 ## Release
 
 This branch removes the old loader API, so the next release is a breaking
-`0.3.0` minor release. The `nextVersionBump` setting in `package.json` tells
+`0.3.0` minor release. 
+
+The `nextVersionBump` setting in `package.json` tells
 the release scripts which version to prepare; the release script runs after
 the branch is merged to `main`.
 
