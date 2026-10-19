@@ -11,7 +11,7 @@ This repo will probably not see further updates and the recommendation is to mig
 A testing or alpha 0.3.0 release as a migration step is available as a stepping stone towards that migrtion. 
 
 This is not yet an npm deprecation notice: the remaining
-`@vertexvis/web-workers` exports in the `@vertexvis/web-workers` for the 0.3.0 pre-release should theoretically work, but have recivede minimal testing. 
+`@vertexvis/web-workers` exports in the `@vertexvis/web-workers` for the 0.3.0 pre-release should theoretically work, but have received minimal testing. 
 
 For practical purposes this should be considered an archived repo and an unsupported release.
 
