@@ -8,10 +8,12 @@ For new code, the recommendation is use `threadsx` directly. The custom `worker:
 
 This repo will probably not see further updates and the recommendation is to migrate away.
 
-a testing or alpha 0.3.0 release as a migration step is potentially coming. 
+A testing or alpha 0.3.0 release as a migration step is available as a stepping stone towards that migrtion. 
 
 This is not yet an npm deprecation notice: the remaining
-`@vertexvis/web-workers` exports should continue to work with next release.
+`@vertexvis/web-workers` exports in the `@vertexvis/web-workers` for the 0.3.0 pre-release should theoretically work, but have recivede minimal testing. 
+
+For practical purposes this should be considered an archived repo and an unsupported release.
 
 ## Use threadsx directly
 
@@ -44,7 +46,7 @@ remaining helpers for existing users.
 
 ## Release
 
-Latest updates remove the old loader API, so the next release is a breaking one and the effort to adapt is likely no less than just moving to threadsx directly. 
+Latest updates removes the old loader API, so 0.3.0 is a breaking one and the effort to adapt is likely no less than just moving to threadsx directly. 
 
 The `nextVersionBump` setting in `package.json` tells
 the release scripts which version to prepare; the release script runs after
